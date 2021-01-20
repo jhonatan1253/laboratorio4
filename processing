@@ -1,0 +1,105 @@
+
+import processing.serial.*;
+Serial port;
+float Estatura;
+float auxEstatura=0;
+float Peso;
+int aux=0;
+
+void setup (){
+  
+  port= new Serial(this, "COM10",9600);
+  size(700,600); // pantalla
+  background(255,255,255); //color de fondo RGB
+  stroke(0);
+  strokeWeight(1);
+  line(50,5,50,450);
+  line(50,450,650,450);
+  line(50,450,650,450);
+  
+  stroke(#5A5A5A);
+  strokeWeight(1);
+  //line(125,5,125,450);
+  line(200,5,200,450);
+  //line(275,5,275,450);
+  line(350,5,350,450);
+  line(500,5,500,450);
+  line(650,5,650,450);
+  
+  line(50,400,650,400);
+  line(50,350,650,350);
+  line(50,300,650,300);
+  line(50,250,650,250);
+  line(50,200,650,200);
+  line(50,150,650,150);
+  line(50,100,650,100);
+  line(50,50,650,50);
+  
+  textSize(20);
+  fill(0);
+  text("0",35,450);
+  text("10",15,400);
+  text("20",15,350);
+  text("30",15,300);
+  text("40",15,250);
+  text("50",15,200);
+  text("60",15,150);
+  text("70",15,100);
+  text("80",15,50);
+  
+  text("150",50,470);
+  text("160",200,470);
+  text("170",350,470);
+  text("180",500,470);
+  text("190",650,470);
+  
+  textSize(20);
+  fill(0);
+  text("LABORATORIO 4",100,500);
+  text("Jhonatan Jacome",10,550);
+  text("Tendencia Lineal",10,580);
+  //text("y=1.1797x-133.39",750,200);
+}
+
+void serialEvent(Serial port){
+  Estatura=port.read();
+  auxEstatura=int(Estatura); 
+  println("Estatura=");
+  println(Estatura);
+  Peso=Estatura*(1.1797)-133.39;
+  println("Peso=");
+  println(Peso);
+}
+
+void draw(){
+  
+  if(Peso>0){
+  stroke(#C8E81A);
+  strokeWeight(2);
+  fill(#1AE81B);
+  ellipse((Estatura*15)-2200,450-(Peso)*5,10,10);
+  }
+  
+  stroke(0,0,255);
+  strokeWeight(2);
+  fill(#DD77DE);
+  
+  ellipse((170*15)-2200,450-67*5,5,5); //centro, ancho y altura
+  ellipse((180*15)-2200,450-80*5,5,5); 
+  ellipse((170*15)-2200,450-65*5,5,5); 
+  ellipse((178*15)-2200,450-75*5,5,5); 
+  ellipse((160*15)-2200,450-55*5,5,5); 
+  ellipse((163*15)-2200,450-60*5,5,5); 
+  ellipse((165*15)-2200,450-63*5,5,5); 
+  ellipse((170*15)-2200,450-70*5,5,5); 
+  ellipse((164*15)-2200,450-62*5,5,5); 
+  ellipse((176*15)-2200,450-77*5,5,5); 
+  ellipse((164*15)-2200,450-60*5,5,5); 
+  ellipse((170*15)-2200,450-76*5,5,5); 
+  ellipse((170*15)-2200,450-56*5,5,5); 
+  ellipse((168*15)-2200,450-60*5,5,5); 
+  
+  stroke(216,22,22);
+  strokeWeight(1);
+  line(150*15-2200,450-43.565*5,(190*15)-2200,450-90.753*5); 
+}
