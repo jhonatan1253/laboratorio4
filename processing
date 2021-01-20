@@ -1,70 +1,66 @@
-
 import processing.serial.*;
 Serial port;
 float Estatura;
-float auxEstatura=0;
+float AEstatura=0;
 float Peso;
-int aux=0;
+int arg=0;
 
 void setup (){
   
   port= new Serial(this, "COM10",9600);
   size(700,600); // pantalla
-  background(255,255,255); //color de fondo RGB
+  background(255,255,255); //color de fondo 
   stroke(0);
-  strokeWeight(1);
-  line(50,5,50,450);
-  line(50,450,650,450);
-  line(50,450,650,450);
+  strokeWeight(4);      // lineas Negritas
+  line(50,5,50,450);   // lineas del plano cartesiano
+  line(50,450,650,450);  // lineas del plano cartesiano
+  line(50,450,650,450);   // lineas del plano cartesiano
   
   stroke(#5A5A5A);
-  strokeWeight(1);
-  //line(125,5,125,450);
-  line(200,5,200,450);
-  //line(275,5,275,450);
-  line(350,5,350,450);
-  line(500,5,500,450);
-  line(650,5,650,450);
+  strokeWeight(2);      // lineas Negritas
+  line(200,5,200,450);   // lineas del plano cartesiano
+  line(350,5,350,450);   // lineas del plano cartesiano  
+  line(500,5,500,450);   // lineas del plano cartesiano
+  line(650,5,650,450);    // lineas del plano cartesiano
   
-  line(50,400,650,400);
-  line(50,350,650,350);
-  line(50,300,650,300);
-  line(50,250,650,250);
-  line(50,200,650,200);
-  line(50,150,650,150);
-  line(50,100,650,100);
-  line(50,50,650,50);
+  line(50,400,650,400);   // lineas del plano cartesiano
+  line(50,350,650,350);   // lineas del plano cartesiano
+  line(50,300,650,300);   // lineas del plano cartesiano
+  line(50,250,650,250);    // lineas del plano cartesiano
+  line(50,200,650,200);   // lineas del plano cartesiano
+  line(50,150,650,150);   // lineas del plano cartesiano
+  line(50,100,650,100);   // lineas del plano cartesiano
+  line(50,50,650,50);    // lineas del plano cartesiano
   
   textSize(20);
   fill(0);
-  text("0",35,450);
-  text("10",15,400);
-  text("20",15,350);
-  text("30",15,300);
-  text("40",15,250);
-  text("50",15,200);
-  text("60",15,150);
-  text("70",15,100);
-  text("80",15,50);
+  text("0",35,450);      // numeracion del eje Y
+  text("10",15,400);    // numeracion del eje Y
+  text("20",15,350);   // numeracion del eje Y
+  text("30",15,300);   // numeracion del eje Y
+  text("40",15,250);   // numeracion del eje Y
+  text("50",15,200);   // numeracion del eje Y
+  text("60",15,150);   // numeracion del eje Y
+  text("70",15,100);   // numeracion del eje Y
+  text("80",15,50);   // numeracion del eje Y
   
-  text("150",50,470);
-  text("160",200,470);
-  text("170",350,470);
-  text("180",500,470);
-  text("190",650,470);
+  text("150",50,470);    // numeracion del eje X
+  text("160",200,470);  // numeracion del eje X
+  text("170",350,470);  // numeracion del eje X
+  text("180",500,470);  // numeracion del eje X
+  text("190",650,470);  // numeracion del eje X
   
-  textSize(20);
-  fill(0);
+  textSize(25);
+  fill(3);
   text("LABORATORIO 4",100,500);
   text("Jhonatan Jacome",10,550);
   text("Tendencia Lineal",10,580);
-  //text("y=1.1797x-133.39",750,200);
 }
 
-void serialEvent(Serial port){
-  Estatura=port.read();
-  auxEstatura=int(Estatura); 
-  println("Estatura=");
+void serialEvent(Serial port){  // codigo del virtual Serial
+  Estatura=port.read();   
+  AEstatura=int(Estatura); 
+  println("Estatura="); 
   println(Estatura);
   Peso=Estatura*(1.1797)-133.39;
   println("Peso=");
@@ -74,17 +70,20 @@ void serialEvent(Serial port){
 void draw(){
   
   if(Peso>0){
-  stroke(#C8E81A);
+  stroke(#B7B01E);
   strokeWeight(2);
   fill(#1AE81B);
-  ellipse((Estatura*15)-2200,450-(Peso)*5,10,10);
+  ellipse((Estatura*15)-2200,450-(Peso)*5,10,10); //Elipse de peso
   }
+    stroke(216,22,22);
+  strokeWeight(1);
+  line(150*15-2200,450-43.565*5,(190*15)-2200,450-90.753*5);   // Tendencia lineal
   
   stroke(0,0,255);
   strokeWeight(2);
   fill(#DD77DE);
   
-  ellipse((170*15)-2200,450-67*5,5,5); //centro, ancho y altura
+  ellipse((170*15)-2200,450-67*5,5,5); //centro, ancho y altura de las elipses utillizadas
   ellipse((180*15)-2200,450-80*5,5,5); 
   ellipse((170*15)-2200,450-65*5,5,5); 
   ellipse((178*15)-2200,450-75*5,5,5); 
@@ -98,8 +97,5 @@ void draw(){
   ellipse((170*15)-2200,450-76*5,5,5); 
   ellipse((170*15)-2200,450-56*5,5,5); 
   ellipse((168*15)-2200,450-60*5,5,5); 
-  
-  stroke(216,22,22);
-  strokeWeight(1);
-  line(150*15-2200,450-43.565*5,(190*15)-2200,450-90.753*5); 
+   
 }
